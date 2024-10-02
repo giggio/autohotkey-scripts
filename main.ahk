@@ -1,21 +1,34 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-!#t:: ; Windows + ALT + T
-    SendInput, {Raw}%ClipBoard%
-Return
+﻿#Requires AutoHotkey >=2.0
 
-; Win + E
-#e::
-FilesTitle := "Files ahk_class ApplicationFrameWindow ahk_exe ApplicationFrameHost.exe"
-FilesLocation := USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\files.exe"
-    if WinExist(FilesTitle) {
-        WinActivate % FilesTitle     ; Set focus
-        SendInput ^t                    ; Send CTRL + t shortcut to open a new tab
-    } else {
-        Run % FilesLocation          ; Start Files
-        WinWait % FilesTitle         ; Wait for it ...
-        WinActivate % FilesTitle     ; Set focus
+#Warn  ; Enable warnings to assist with detecting common errors.
+SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
+
+!#t:: ; Windows + ALT + T, paste as plain text
+{
+    SendInput "{Raw}" A_Clipboard
+    Return
+}
+
+~LWin up:: ; remap Windows key to Windows+Tab
+{
+    If (A_PriorKey = "LWin") ; LWin was pressed alone
+    {
+        Send "#{Tab}"
     }
-return
+    return
+}
+
+; Win + E, map to the files app
+; No longer in use
+; #e::
+; FilesTitle := "Files ahk_class ApplicationFrameWindow ahk_exe ApplicationFrameHost.exe"
+; FilesLocation := USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\files.exe"
+;     if WinExist(FilesTitle) {
+;         WinActivate % FilesTitle     ; Set focus
+;         SendInput ^t                    ; Send CTRL + t shortcut to open a new tab
+;     } else {
+;         Run % FilesLocation          ; Start Files
+;         WinWait % FilesTitle         ; Wait for it ...
+;         WinActivate % FilesTitle     ; Set focus
+;     }
+; return
