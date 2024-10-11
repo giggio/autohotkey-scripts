@@ -9,26 +9,52 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
     Return
 }
 
+~LWin::Send "{Blind}{vkE8}" ; disable Windows key
+
 ~LWin up:: ; remap Windows key to Windows+Tab
 {
-    If (A_PriorKey = "LWin") ; LWin was pressed alone
+    If (A_PriorKey = "LWin") ; Only Windows key pressed
     {
-        Send "#{Tab}"
+        if WinActive("Task View") {
+            Send "{Esc}"
+        } else {
+            Send "#{Tab}"
+        }
     }
     return
 }
 
-; Win + E, map to the files app
-; No longer in use
-; #e::
-; FilesTitle := "Files ahk_class ApplicationFrameWindow ahk_exe ApplicationFrameHost.exe"
-; FilesLocation := USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\files.exe"
-;     if WinExist(FilesTitle) {
-;         WinActivate % FilesTitle     ; Set focus
-;         SendInput ^t                    ; Send CTRL + t shortcut to open a new tab
-;     } else {
-;         Run % FilesLocation          ; Start Files
-;         WinWait % FilesTitle         ; Wait for it ...
-;         WinActivate % FilesTitle     ; Set focus
-;     }
-; return
+#HotIf WinActive("Task View") ; open Start Menu and type
+a::
+b::
+c::
+d::
+e::
+f::
+g::
+h::
+i::
+j::
+k::
+l::
+m::
+n::
+o::
+p::
+q::
+r::
+s::
+t::
+u::
+v::
+w::
+x::
+y::
+z::
+{
+    Send "^{Esc}"
+    Sleep 10 ; milliseconds
+    Send A_ThisHotkey
+    return
+}
+#HotIf
