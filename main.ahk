@@ -53,7 +53,7 @@ y::
 z::
 {
     Send "^{Esc}"
-    Sleep 10 ; milliseconds
+    Sleep 100 ; milliseconds
     Send A_ThisHotkey
     return
 }
