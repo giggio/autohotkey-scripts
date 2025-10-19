@@ -52,7 +52,8 @@ x::
 y::
 z::
 {
-    Send "^{Esc}"
+    ; Send "^{Esc}" ; change from Shift + Esc to Windows + Space
+    Send "!{Space}"
     Sleep 100 ; milliseconds
     Send A_ThisHotkey
     return
